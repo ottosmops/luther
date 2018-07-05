@@ -17,3 +17,7 @@ Route::get('/', function () {
 
 Route::get('/{book}/{chapter}/{verse}', '\App\Http\Controllers\ApiController@show');
 Route::get('/books', '\App\Http\Controllers\BooksController@index');
+
+Route::get('/example', function(){
+    return view('example');
+});
