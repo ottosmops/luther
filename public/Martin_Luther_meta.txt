@@ -1,0 +1,15 @@
+id=b51
+lang=deu
+short.title=Luther 1912
+charset=0
+description=Luther translation 1912
+publish.date=1912
+version.major=1
+version.minor=3
+version.date=2010-11-11
+creator=J. Barkowsky (j.bark@web.de)
+about=1912 Lutherbibel - Public domain
+
+http://bitflow.dyndns.org/german/MartinLuther-1912/Martin_Luther_Uebersetzung_1912.txt
+
+http://www.sermon-online.de/search.pl?lang=de&id=6068
