@@ -78,11 +78,21 @@
                    Luther's German Bible-Translation (1912)
                 </div>
                 <div class="links">
-                    <h4>Example</h4>
-                        <span class='tooltip'>Gen 1.1</span><br>
+                    <h4>Examples</h4>
                         <span class='tooltip'>Gen 1.3</span><br>
                         <span class='tooltip'>Ex 1.1</span><br>
-                        <span class='tooltip'>Exo 1.1</span>
+                        <span class='tooltip'>Exo 1.1</span><br>
+                        <span class='tooltip'>Exo 1.1-3</span><br>
+                        <span class='tooltip'>Exo 1.1,3</span>
+                    <br><br>
+                    <h4>Source</h4>
+
+                        {{ htmlspecialchars("<span class='tooltip'>Gen 1.3</span><br>") }}<br>
+                        {{ htmlspecialchars("<span class='tooltip'>Ex 1.1</span><br>") }}<br>
+                        {{ htmlspecialchars("<span class='tooltip'>Exo 1.1</span><br>") }}<br>
+                        {{ htmlspecialchars("<span class='tooltip'>Exo 1.1-3</span><br>") }}<br>
+                        {{ htmlspecialchars("<span class='tooltip'>Exo 1.1,3</span><br>") }}<br>
+
                     <br><br><br>
                     <small>Questions, support: <a href="mailto:luther@k-r.ch">luther@k-r.ch</a></small>
                 </div>
@@ -95,7 +105,6 @@
  $(document).ready(function() {
     $('.tooltip').tooltipster({
         content: 'Loading...',
-
         // 'instance' is basically the tooltip. More details in the "Object-oriented Tooltipster" section.
         functionBefore: function(instance, helper) {
             val = $(instance.elementOrigin()).text()
@@ -109,16 +118,24 @@
             // we set a variable so the data is only loaded once via Ajax, not every time the tooltip opens
             if ($origin.data('loaded') !== true) {
                 $.get(url, function(data) {
-                    console.log(data.data[0].text)
+                    arr = data.data.map(function(index, value){
+                        return index.text
+                    });
+
                     // call the 'content' method to update the content of our tooltip with the returned data.
                     // note: this content update will trigger an update animation (see the updateAnimation option)
-                    instance.content(data.data[0].text);
+                    //instance.content(data.data[0].text);
+
+                    instance.content(arr.join(' '));
+
                     // to remember that the data has been loaded
                     $origin.data('loaded', true);
                 });
             }
         }
     });
+
+
 });
 </script>
 </html>

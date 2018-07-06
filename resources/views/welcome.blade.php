@@ -99,7 +99,7 @@
                     The text for this Api is taken from<br>
                     <a href="http://www.sermon-online.de/search.pl?lang=de&id=6068">www.sermon-online.de</a><br>
 
-                    The Api is a Prototype and very rudimentary. <br>
+                    The Api is a prototype and very rudimentary. <br>
                     No links, no relations, no errors, just pure or poor data.<br>
                     <br><br><br>
                     <small>Questions, support: <a href="mailto:luther@k-r.ch">luther@k-r.ch</a></small>
