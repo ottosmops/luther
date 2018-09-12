@@ -36,6 +36,19 @@ class ApiController extends Controller
         if (is_integer($verses)) {
             $verses[] = $verses;
         }
+
+        if (strpos($verses, 'ff')) {
+            $verses = rtrim($verses, 'f. ');
+            $to = $verses+3;
+            $verses = $verses .'-'. $to;
+        }
+
+        if (strpos($verses, 'f')) {
+            $verses = trim($verses, 'f. ');
+            $to = $verses+1;
+            $verses = $verses .'-'. $to;
+        }
+
         if (strpos($verses, '-')) {
             list($start, $end) = explode('-', $verses);
             $verses = range($start, $end);

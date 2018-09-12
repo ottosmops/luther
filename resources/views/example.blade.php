@@ -19,7 +19,7 @@
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
                 height: 100vh;
-                margin: 0;
+                margin: 20px;
             }
 
             .full-height {
@@ -72,61 +72,58 @@
 
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+        <div class="flex-center">
             <div class="content">
                 <div class="title m-b-md">
                    Luther's German Bible-Translation (1912)
                 </div>
                 <div class="links">
                     <h4>Examples</h4>
-                        <span class='tooltip'>Gen 1.3</span><br>
-                        <span class='tooltip'>Ex 1.1</span><br>
-                        <span class='tooltip'>Exo 1.1</span><br>
-                        <span class='tooltip'>Exo 1.1-3</span><br>
-                        <span class='tooltip'>Exo 1.1,3</span>
+                        <bible>Gen 11.7-9</bible><br>
+                        <bible>Pro 26.14</bible><br>
+                        <bible>Spr 26.11</bible><br>
+                        <bible>Exo 1.1-3</bible><br>
+                        <bible>Exo 1.1,3</bible><br>
+                        <bible>Gen 1.1f</bible><br>
+                        <bible>Gen 1.1ff</bible><br>
                     <br><br>
                     <h4>Source</h4>
-
-                        {{ htmlspecialchars("<span class='tooltip'>Gen 1.3</span><br>") }}<br>
-                        {{ htmlspecialchars("<span class='tooltip'>Ex 1.1</span><br>") }}<br>
-                        {{ htmlspecialchars("<span class='tooltip'>Exo 1.1</span><br>") }}<br>
-                        {{ htmlspecialchars("<span class='tooltip'>Exo 1.1-3</span><br>") }}<br>
-                        {{ htmlspecialchars("<span class='tooltip'>Exo 1.1,3</span><br>") }}<br>
-
+                        {{ htmlspecialchars("<bible>Gen 11.7-9</bible><br>") }}<br>
+                        {{ htmlspecialchars("<bible>Pro 26.14</bible><br>") }}<br>
+                        {{ htmlspecialchars("<bible>Spr 26.11</bible><br>") }}<br>
+                        {{ htmlspecialchars("<bible>Exo 1.1-3</bible><br>") }}<br>
+                        {{ htmlspecialchars("<bible>Exo 1.1,3</bible><br>") }}<br>
+                        {{ htmlspecialchars("<bible>Gen 1.1f</bible><br>") }}<br>
+                        {{ htmlspecialchars("<bible>Gen 1.1ff</bible><br>") }}<br>
                     <br><br><br>
                     <small>Questions, support: <a href="mailto:luther@k-r.ch">luther@k-r.ch</a></small>
                 </div>
             </div>
         </div>
-
     </body>
 
 <script type="text/javascript">
  $(document).ready(function() {
-    $('.tooltip').tooltipster({
+    $('bible').tooltipster({
         content: 'Loading...',
+        animation: 'fade',
+        updateAnimation: 'null',
         // 'instance' is basically the tooltip. More details in the "Object-oriented Tooltipster" section.
         functionBefore: function(instance, helper) {
             val = $(instance.elementOrigin()).text()
-            parts = val.split(" ")
-            book = parts[0]
-            chap = parts[1].split('.')[0]
-            verse = parts[1].split('.')[1]
-            url = '/'+[book, chap, verse].join('/');
-
+            url = createUrl(val);
             var $origin = $(helper.origin);
             // we set a variable so the data is only loaded once via Ajax, not every time the tooltip opens
             if ($origin.data('loaded') !== true) {
                 $.get(url, function(data) {
-                    arr = data.data.map(function(index, value){
+                    verses = data.data.map(function(index, value){
                         return index.text
                     });
 
                     // call the 'content' method to update the content of our tooltip with the returned data.
                     // note: this content update will trigger an update animation (see the updateAnimation option)
                     //instance.content(data.data[0].text);
-
-                    instance.content(arr.join(' '));
+                    instance.content(verses.join(' '));
 
                     // to remember that the data has been loaded
                     $origin.data('loaded', true);
@@ -135,7 +132,15 @@
         }
     });
 
-
+    function createUrl(text)
+    {
+        parts = text.split(" ")
+        book = parts[0]
+        chap = parts[1].split('.')[0]
+        verse = parts[1].split('.')[1]
+        url = '/'+[book, chap, verse].join('/');
+        return url;
+    }
 });
 </script>
 </html>

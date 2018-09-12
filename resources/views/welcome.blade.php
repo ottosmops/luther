@@ -20,7 +20,7 @@
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
                 height: 100vh;
-                margin: 0;
+                margin: 20px;
             }
 
             .full-height {
@@ -72,7 +72,7 @@
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+        <div class="flex-center">
             <div class="content">
                 <div class="title m-b-md">
                    Luther's German Bible-Translation (1912)
@@ -84,8 +84,12 @@
                     <a href="{{ url('/gen/1/1') }}">{{ url('/gen/1/1') }}</a><br>
                     To get Genesis 1.1-3:<br>
                     <a href="{{ url('/gen/1/1-3') }}">{{ url('/gen/1/1-3') }}</a><br>
-                    To get Genesis 1.1 and Genesis 1.2:<br>
-                    <a href="{{ url('/gen/1/1,3') }}">{{ url('/gen/1/1,3') }}</a>
+                    To get Genesis 1.1 and Genesis 1.3:<br>
+                    <a href="{{ url('/gen/1/1,3') }}">{{ url('/gen/1/1,3') }}</a><br>
+                    To get Genesis 1.1f.:<br>
+                    <a href="{{ url('/gen/1/1f') }}">{{ url('/gen/1/1f') }}</a><br>
+                    If you use Genesis 1.1ff. it will show 3 more verses:<br>
+                    <a href="{{ url('/gen/1/1ff.') }}">{{ url('/gen/1/1ff.') }}</a><br>
 
                     <h4>Books</h4>
                     List of books <br>
