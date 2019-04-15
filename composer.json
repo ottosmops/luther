@@ -14,6 +14,7 @@
         "laravel/tinker": "~1.0",
         "league/fractal": "^0.17.0",
         "m165437/laravel-blueprint-docs": "^0.2.0",
+        "orangehill/iseed": "^2.6",
         "spatie/laravel-tail": "^3.2"
     },
     "require-dev": {

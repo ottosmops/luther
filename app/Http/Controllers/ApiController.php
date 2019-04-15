@@ -19,6 +19,15 @@ class ApiController extends Controller
                 ->whereIn('verse', self::parseVerses($verse))
                 ->select('verses.id', 'books.title as book', 'verses.chapter', 'verses.verse', 'verses.text')
                 ->get();
+        if (!$result->toArray()) {
+            $result = DB::table('verses')
+            ->leftJoin('books', 'verses.book_id', '=', 'books.id')
+                ->whereRaw('books.alternative_title like "%'.$book.'%"')
+                ->where('chapter', $chapter)
+                ->whereIn('verse', self::parseVerses($verse))
+                ->select('verses.id', 'books.title as book', 'verses.chapter', 'verses.verse', 'verses.text')
+                ->get();
+        }
 
         return response::json([
             'data' => $result->toArray(),
